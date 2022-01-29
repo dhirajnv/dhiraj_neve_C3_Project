@@ -3,6 +3,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -46,6 +48,22 @@ class RestaurantTest {
     }
 
     //<<<<<<<<<<<<<<<<<<<<<<<<<OPEN/CLOSED>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    @Test
+    public void calculate_cost_should_return_correct_result() {
+        Restaurant restaurant = createDefaultRestaurantForTest();
+        List<String> itemList = new ArrayList<String>();
+        itemList.add(testNameItem1);
+        itemList.add(testNameItem2);
+        assertEquals(testPriceItem1 + testPriceItem2, restaurant.calculateCost(itemList));
+    }
+
+    @Test
+    public void calculate_cost_should_zero_for_zero_items() {
+        Restaurant restaurant = createDefaultRestaurantForTest();
+        List<String> itemList = new ArrayList<String>();
+        assertEquals(0, restaurant.calculateCost(itemList));
+    }
 
 
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>MENU<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
